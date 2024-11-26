@@ -1,5 +1,9 @@
 import express from "express";
 import {
+  // enhance code start
+  uploadProductPhoto,
+  resizeProductPhoto,
+  // enhance code end
   createproduct,
   viewproducts,
   viewproduct,
@@ -9,7 +13,7 @@ import {
 const router = express.Router();
 
 // Create a product
-router.post("/", createproduct);
+router.post("/", uploadProductPhoto, resizeProductPhoto, createproduct);
 
 // View all products
 router.get("/", viewproducts);
@@ -18,7 +22,7 @@ router.get("/", viewproducts);
 router.get("/:id", viewproduct);
 
 // Update a product
-router.put("/:id", updateproduct);
+router.patch("/:id", uploadProductPhoto, resizeProductPhoto, updateproduct);
 
 // Delete a product
 router.delete("/:id", deleteproduct);
